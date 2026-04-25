@@ -1,5 +1,5 @@
 {
-  "snapshotDate": "2026-04-25T01:02:13.391Z",
+  "snapshotDate": "2026-04-25T09:57:59.800Z",
   "league": "NBA",
   "season": 2026,
   "stats": {
@@ -1027,22 +1027,22 @@
         "value": null
       },
       {
-        "playerId": "4431678",
+        "playerId": "2990992",
         "rank": 3,
         "value": null
       },
       {
-        "playerId": "4065648",
+        "playerId": "4278073",
         "rank": 4,
         "value": null
       },
       {
-        "playerId": "4278073",
+        "playerId": "4065648",
         "rank": 5,
         "value": null
       },
       {
-        "playerId": "4684740",
+        "playerId": "4431678",
         "rank": 6,
         "value": null
       },
@@ -1052,17 +1052,17 @@
         "value": null
       },
       {
-        "playerId": "2990992",
+        "playerId": "4432166",
         "rank": 8,
         "value": null
       },
       {
-        "playerId": "4432166",
+        "playerId": "3112335",
         "rank": 9,
         "value": null
       },
       {
-        "playerId": "3112335",
+        "playerId": "4684740",
         "rank": 10,
         "value": null
       },
@@ -1097,7 +1097,7 @@
         "value": null
       },
       {
-        "playerId": "4845367",
+        "playerId": "4711272",
         "rank": 17,
         "value": null
       },
@@ -1107,12 +1107,12 @@
         "value": null
       },
       {
-        "playerId": "4066354",
+        "playerId": "4683021",
         "rank": 19,
         "value": null
       },
       {
-        "playerId": "4711272",
+        "playerId": "4845367",
         "rank": 20,
         "value": null
       },
@@ -1142,7 +1142,7 @@
         "value": null
       },
       {
-        "playerId": "3078576",
+        "playerId": "4066354",
         "rank": 26,
         "value": null
       },
@@ -1172,57 +1172,57 @@
         "value": null
       },
       {
-        "playerId": "4066211",
+        "playerId": "4278585",
         "rank": 32,
         "value": null
       },
       {
-        "playerId": "4278585",
+        "playerId": "4432165",
         "rank": 33,
         "value": null
       },
       {
-        "playerId": "4432165",
+        "playerId": "4594268",
         "rank": 34,
         "value": null
       },
       {
-        "playerId": "4594268",
+        "playerId": "4601023",
         "rank": 35,
         "value": null
       },
       {
-        "playerId": "4601023",
+        "playerId": "3078576",
         "rank": 36,
         "value": null
       },
       {
-        "playerId": "4683021",
+        "playerId": "3913174",
         "rank": 37,
         "value": null
       },
       {
-        "playerId": "4432241",
+        "playerId": "3917376",
         "rank": 38,
         "value": null
       },
       {
-        "playerId": "2583632",
+        "playerId": "4432241",
         "rank": 39,
         "value": null
       },
       {
-        "playerId": "3064290",
+        "playerId": "2583632",
         "rank": 40,
         "value": null
       },
       {
-        "playerId": "3157465",
+        "playerId": "3064290",
         "rank": 41,
         "value": null
       },
       {
-        "playerId": "3917376",
+        "playerId": "3157465",
         "rank": 42,
         "value": null
       },
@@ -1242,107 +1242,107 @@
         "value": null
       },
       {
-        "playerId": "4278039",
+        "playerId": "4066211",
         "rank": 46,
         "value": null
       },
       {
-        "playerId": "3136193",
+        "playerId": "4278039",
         "rank": 47,
         "value": null
       },
       {
-        "playerId": "3913176",
+        "playerId": "5124612",
         "rank": 48,
         "value": null
       },
       {
-        "playerId": "4431671",
+        "playerId": "4251",
         "rank": 49,
         "value": null
       },
       {
-        "playerId": "2490149",
+        "playerId": "3136193",
         "rank": 50,
         "value": null
       },
       {
-        "playerId": "3913174",
+        "playerId": "3913176",
         "rank": 51,
         "value": null
       },
       {
-        "playerId": "4277847",
+        "playerId": "4431671",
         "rank": 52,
         "value": null
       },
       {
-        "playerId": "4433621",
+        "playerId": "6478",
         "rank": 53,
         "value": null
       },
       {
-        "playerId": "4566434",
+        "playerId": "2490149",
         "rank": 54,
         "value": null
       },
       {
-        "playerId": "5124612",
+        "playerId": "4277847",
         "rank": 55,
         "value": null
       },
       {
-        "playerId": "4065670",
+        "playerId": "4433621",
         "rank": 56,
         "value": null
       },
       {
-        "playerId": "5093267",
+        "playerId": "4566434",
         "rank": 57,
         "value": null
       },
       {
-        "playerId": "4251",
+        "playerId": "4065670",
         "rank": 58,
         "value": null
       },
       {
-        "playerId": "6440",
+        "playerId": "4395630",
         "rank": 59,
         "value": null
       },
       {
-        "playerId": "6478",
+        "playerId": "5037871",
         "rank": 60,
         "value": null
       },
       {
-        "playerId": "6585",
+        "playerId": "5093267",
         "rank": 61,
         "value": null
       },
       {
-        "playerId": "3032976",
+        "playerId": "6440",
         "rank": 62,
         "value": null
       },
       {
-        "playerId": "3032979",
+        "playerId": "3032976",
         "rank": 63,
         "value": null
       },
       {
-        "playerId": "4065778",
+        "playerId": "3032979",
         "rank": 64,
         "value": null
       },
       {
-        "playerId": "4222252",
+        "playerId": "4065778",
         "rank": 65,
         "value": null
       },
       {
-        "playerId": "4395630",
+        "playerId": "4222252",
         "rank": 66,
         "value": null
       },
@@ -1377,7 +1377,7 @@
         "value": null
       },
       {
-        "playerId": "5037871",
+        "playerId": "5061568",
         "rank": 73,
         "value": null
       },
@@ -1387,97 +1387,97 @@
         "value": null
       },
       {
-        "playerId": "3134908",
+        "playerId": "3064560",
         "rank": 75,
         "value": null
       },
       {
-        "playerId": "3147657",
+        "playerId": "3134908",
         "rank": 76,
         "value": null
       },
       {
-        "playerId": "4278580",
+        "playerId": "3147657",
         "rank": 77,
         "value": null
       },
       {
-        "playerId": "4396971",
+        "playerId": "4278129",
         "rank": 78,
         "value": null
       },
       {
-        "playerId": "3064560",
+        "playerId": "4278580",
         "rank": 79,
         "value": null
       },
       {
-        "playerId": "3155526",
+        "playerId": "4395723",
         "rank": 80,
         "value": null
       },
       {
-        "playerId": "4065804",
+        "playerId": "4396971",
         "rank": 81,
         "value": null
       },
       {
-        "playerId": "4277869",
+        "playerId": "4433192",
         "rank": 82,
         "value": null
       },
       {
-        "playerId": "4278129",
+        "playerId": "5105565",
         "rank": 83,
         "value": null
       },
       {
-        "playerId": "4397014",
+        "playerId": "3155526",
         "rank": 84,
         "value": null
       },
       {
-        "playerId": "4432823",
+        "playerId": "4277869",
         "rank": 85,
         "value": null
       },
       {
-        "playerId": "4433192",
+        "playerId": "4432823",
         "rank": 86,
         "value": null
       },
       {
-        "playerId": "4592691",
+        "playerId": "3195",
         "rank": 87,
         "value": null
       },
       {
-        "playerId": "4683678",
+        "playerId": "6585",
         "rank": 88,
         "value": null
       },
       {
-        "playerId": "5105565",
+        "playerId": "3137259",
         "rank": 89,
         "value": null
       },
       {
-        "playerId": "3195",
+        "playerId": "3138196",
         "rank": 90,
         "value": null
       },
       {
-        "playerId": "3137259",
+        "playerId": "4066648",
         "rank": 91,
         "value": null
       },
       {
-        "playerId": "3138196",
+        "playerId": "4067017",
         "rank": 92,
         "value": null
       },
       {
-        "playerId": "4067017",
+        "playerId": "4397014",
         "rank": 93,
         "value": null
       },
@@ -1487,67 +1487,67 @@
         "value": null
       },
       {
-        "playerId": "4023",
+        "playerId": "4592691",
         "rank": 95,
         "value": null
       },
       {
-        "playerId": "2991350",
+        "playerId": "4683678",
         "rank": 96,
         "value": null
       },
       {
-        "playerId": "3133603",
+        "playerId": "4023",
         "rank": 97,
         "value": null
       },
       {
-        "playerId": "3133626",
+        "playerId": "2991350",
         "rank": 98,
         "value": null
       },
       {
-        "playerId": "3133635",
+        "playerId": "3133603",
         "rank": 99,
         "value": null
       },
       {
-        "playerId": "3907498",
+        "playerId": "3133626",
         "rank": 100,
         "value": null
       },
       {
-        "playerId": "3934719",
+        "playerId": "3133635",
         "rank": 101,
         "value": null
       },
       {
-        "playerId": "4065673",
+        "playerId": "3934719",
         "rank": 102,
         "value": null
       },
       {
-        "playerId": "4066648",
+        "playerId": "4065673",
         "rank": 103,
         "value": null
       },
       {
-        "playerId": "4066757",
+        "playerId": "4065804",
         "rank": 104,
         "value": null
       },
       {
-        "playerId": "4280151",
+        "playerId": "4066757",
         "rank": 105,
         "value": null
       },
       {
-        "playerId": "4291678",
+        "playerId": "4280151",
         "rank": 106,
         "value": null
       },
       {
-        "playerId": "4395723",
+        "playerId": "4291678",
         "rank": 107,
         "value": null
       },
@@ -1587,102 +1587,102 @@
         "value": null
       },
       {
-        "playerId": "4683689",
+        "playerId": "4684272",
         "rank": 115,
         "value": null
       },
       {
-        "playerId": "4684272",
+        "playerId": "4684742",
         "rank": 116,
         "value": null
       },
       {
-        "playerId": "4684742",
+        "playerId": "4914336",
         "rank": 117,
         "value": null
       },
       {
-        "playerId": "4914336",
+        "playerId": "5104157",
         "rank": 118,
         "value": null
       },
       {
-        "playerId": "5061568",
+        "playerId": "5159925",
         "rank": 119,
         "value": null
       },
       {
-        "playerId": "5104157",
+        "playerId": "2528426",
         "rank": 120,
         "value": null
       },
       {
-        "playerId": "5159925",
+        "playerId": "2993874",
         "rank": 121,
         "value": null
       },
       {
-        "playerId": "2528426",
+        "playerId": "3907498",
         "rank": 122,
         "value": null
       },
       {
-        "playerId": "2993874",
+        "playerId": "3912848",
         "rank": 123,
         "value": null
       },
       {
-        "playerId": "3912848",
+        "playerId": "4066328",
         "rank": 124,
         "value": null
       },
       {
-        "playerId": "4066328",
+        "playerId": "4277951",
         "rank": 125,
         "value": null
       },
       {
-        "playerId": "4433247",
+        "playerId": "4278077",
         "rank": 126,
         "value": null
       },
       {
-        "playerId": "4592492",
+        "playerId": "4432639",
         "rank": 127,
         "value": null
       },
       {
-        "playerId": "4712863",
+        "playerId": "4433247",
         "rank": 128,
         "value": null
       },
       {
-        "playerId": "2596112",
+        "playerId": "4592492",
         "rank": 129,
         "value": null
       },
       {
-        "playerId": "2991043",
+        "playerId": "4683689",
         "rank": 130,
         "value": null
       },
       {
-        "playerId": "4065663",
+        "playerId": "4712863",
         "rank": 131,
         "value": null
       },
       {
-        "playerId": "4066372",
+        "playerId": "2596112",
         "rank": 132,
         "value": null
       },
       {
-        "playerId": "4277951",
+        "playerId": "2991043",
         "rank": 133,
         "value": null
       },
       {
-        "playerId": "4278077",
+        "playerId": "4066372",
         "rank": 134,
         "value": null
       },
@@ -1702,207 +1702,207 @@
         "value": null
       },
       {
-        "playerId": "4397077",
+        "playerId": "4397251",
         "rank": 138,
         "value": null
       },
       {
-        "playerId": "4397251",
+        "playerId": "4683771",
         "rank": 139,
         "value": null
       },
       {
-        "playerId": "4397424",
+        "playerId": "4888725",
         "rank": 140,
         "value": null
       },
       {
-        "playerId": "4432639",
+        "playerId": "5106268",
         "rank": 141,
         "value": null
       },
       {
-        "playerId": "4683771",
+        "playerId": "2528210",
         "rank": 142,
         "value": null
       },
       {
-        "playerId": "4711297",
+        "playerId": "3102529",
         "rank": 143,
         "value": null
       },
       {
-        "playerId": "4888725",
+        "playerId": "3914044",
         "rank": 144,
         "value": null
       },
       {
-        "playerId": "5106268",
+        "playerId": "4065663",
         "rank": 145,
         "value": null
       },
       {
-        "playerId": "2528210",
+        "playerId": "4351852",
         "rank": 146,
         "value": null
       },
       {
-        "playerId": "3914044",
+        "playerId": "4397077",
         "rank": 147,
         "value": null
       },
       {
-        "playerId": "4351852",
+        "playerId": "4397424",
         "rank": 148,
         "value": null
       },
       {
-        "playerId": "6427",
+        "playerId": "4593841",
         "rank": 149,
         "value": null
       },
       {
-        "playerId": "6477",
+        "playerId": "4711297",
         "rank": 150,
         "value": null
       },
       {
-        "playerId": "6578",
+        "playerId": "6427",
         "rank": 151,
         "value": null
       },
       {
-        "playerId": "2489663",
+        "playerId": "6477",
         "rank": 152,
         "value": null
       },
       {
-        "playerId": "2580365",
+        "playerId": "6578",
         "rank": 153,
         "value": null
       },
       {
-        "playerId": "2968436",
+        "playerId": "2489663",
         "rank": 154,
         "value": null
       },
       {
-        "playerId": "2991070",
+        "playerId": "2580365",
         "rank": 155,
         "value": null
       },
       {
-        "playerId": "3102529",
+        "playerId": "2968436",
         "rank": 156,
         "value": null
       },
       {
-        "playerId": "3135046",
+        "playerId": "2991070",
         "rank": 157,
         "value": null
       },
       {
-        "playerId": "3136777",
+        "playerId": "3135046",
         "rank": 158,
         "value": null
       },
       {
-        "playerId": "3150844",
+        "playerId": "3136777",
         "rank": 159,
         "value": null
       },
       {
-        "playerId": "3922230",
+        "playerId": "3150844",
         "rank": 160,
         "value": null
       },
       {
-        "playerId": "3934723",
+        "playerId": "3922230",
         "rank": 161,
         "value": null
       },
       {
-        "playerId": "4066317",
+        "playerId": "3934723",
         "rank": 162,
         "value": null
       },
       {
-        "playerId": "4066387",
+        "playerId": "4066317",
         "rank": 163,
         "value": null
       },
       {
-        "playerId": "4278402",
+        "playerId": "4066387",
         "rank": 164,
         "value": null
       },
       {
-        "playerId": "4278562",
+        "playerId": "4278402",
         "rank": 165,
         "value": null
       },
       {
-        "playerId": "4278572",
+        "playerId": "4278562",
         "rank": 166,
         "value": null
       },
       {
-        "playerId": "4431675",
+        "playerId": "4278572",
         "rank": 167,
         "value": null
       },
       {
-        "playerId": "4431684",
+        "playerId": "4431675",
         "rank": 168,
         "value": null
       },
       {
-        "playerId": "4431893",
+        "playerId": "4431684",
         "rank": 169,
         "value": null
       },
       {
-        "playerId": "4432107",
+        "playerId": "4431893",
         "rank": 170,
         "value": null
       },
       {
-        "playerId": "4432181",
+        "playerId": "4432107",
         "rank": 171,
         "value": null
       },
       {
-        "playerId": "4432446",
+        "playerId": "4432181",
         "rank": 172,
         "value": null
       },
       {
-        "playerId": "4432810",
+        "playerId": "4432446",
         "rank": 173,
         "value": null
       },
       {
-        "playerId": "4433255",
+        "playerId": "4432810",
         "rank": 174,
         "value": null
       },
       {
-        "playerId": "4433607",
+        "playerId": "4433255",
         "rank": 175,
         "value": null
       },
       {
-        "playerId": "4578893",
+        "playerId": "4433607",
         "rank": 176,
         "value": null
       },
       {
-        "playerId": "4592427",
+        "playerId": "4578893",
         "rank": 177,
         "value": null
       },
       {
-        "playerId": "4593841",
+        "playerId": "4592427",
         "rank": 178,
         "value": null
       },
@@ -3041,22 +3041,22 @@
     ],
     "offensive.threePointFieldGoalPct": [
       {
-        "playerId": "3913174",
+        "playerId": "4395625",
         "rank": 1,
         "value": null
       },
       {
-        "playerId": "4395625",
+        "playerId": "4065778",
         "rank": 2,
         "value": null
       },
       {
-        "playerId": "4065778",
+        "playerId": "3934719",
         "rank": 3,
         "value": null
       },
       {
-        "playerId": "3934719",
+        "playerId": "3913174",
         "rank": 4,
         "value": null
       },
@@ -3136,277 +3136,277 @@
         "value": null
       },
       {
-        "playerId": "4431690",
+        "playerId": "3064560",
         "rank": 20,
         "value": null
       },
       {
-        "playerId": "4592427",
+        "playerId": "4431690",
         "rank": 21,
         "value": null
       },
       {
-        "playerId": "5105977",
+        "playerId": "4592427",
         "rank": 22,
         "value": null
       },
       {
-        "playerId": "5239561",
+        "playerId": "4683774",
         "rank": 23,
         "value": null
       },
       {
-        "playerId": "4431893",
+        "playerId": "5105977",
         "rank": 24,
         "value": null
       },
       {
-        "playerId": "2583632",
+        "playerId": "5239561",
         "rank": 25,
         "value": null
       },
       {
-        "playerId": "5104157",
+        "playerId": "4431893",
         "rank": 26,
         "value": null
       },
       {
-        "playerId": "4592479",
+        "playerId": "6585",
         "rank": 27,
         "value": null
       },
       {
-        "playerId": "4397014",
+        "playerId": "2583632",
         "rank": 28,
         "value": null
       },
       {
-        "playerId": "4592492",
+        "playerId": "5104157",
         "rank": 29,
         "value": null
       },
       {
-        "playerId": "4431680",
+        "playerId": "4592479",
         "rank": 30,
         "value": null
       },
       {
-        "playerId": "4433134",
+        "playerId": "5037871",
         "rank": 31,
         "value": null
       },
       {
-        "playerId": "4683678",
+        "playerId": "4592492",
         "rank": 32,
         "value": null
       },
       {
-        "playerId": "3195",
+        "playerId": "4431680",
         "rank": 33,
         "value": null
       },
       {
-        "playerId": "6585",
+        "playerId": "4433134",
         "rank": 34,
         "value": null
       },
       {
-        "playerId": "2528210",
+        "playerId": "4066648",
         "rank": 35,
         "value": null
       },
       {
-        "playerId": "2990992",
+        "playerId": "4683678",
         "rank": 36,
         "value": null
       },
       {
-        "playerId": "3136195",
+        "playerId": "3195",
         "rank": 37,
         "value": null
       },
       {
-        "playerId": "3917376",
+        "playerId": "4251",
         "rank": 38,
         "value": null
       },
       {
-        "playerId": "4065670",
+        "playerId": "2528210",
         "rank": 39,
         "value": null
       },
       {
-        "playerId": "4066372",
+        "playerId": "2990992",
         "rank": 40,
         "value": null
       },
       {
-        "playerId": "4066648",
+        "playerId": "3136195",
         "rank": 41,
         "value": null
       },
       {
-        "playerId": "4397251",
+        "playerId": "3917376",
         "rank": 42,
         "value": null
       },
       {
-        "playerId": "4432241",
+        "playerId": "4065670",
         "rank": 43,
         "value": null
       },
       {
-        "playerId": "4432810",
+        "playerId": "4065804",
         "rank": 44,
         "value": null
       },
       {
-        "playerId": "4433192",
+        "playerId": "4066372",
         "rank": 45,
         "value": null
       },
       {
-        "playerId": "4593803",
+        "playerId": "4395723",
         "rank": 46,
         "value": null
       },
       {
-        "playerId": "4593841",
+        "playerId": "4397014",
         "rank": 47,
         "value": null
       },
       {
-        "playerId": "5061568",
+        "playerId": "4397251",
         "rank": 48,
         "value": null
       },
       {
-        "playerId": "4900671",
+        "playerId": "4432241",
         "rank": 49,
         "value": null
       },
       {
-        "playerId": "1966",
+        "playerId": "4432810",
         "rank": 50,
         "value": null
       },
       {
-        "playerId": "4251",
+        "playerId": "4593803",
         "rank": 51,
         "value": null
       },
       {
-        "playerId": "3157465",
+        "playerId": "4593841",
         "rank": 52,
         "value": null
       },
       {
-        "playerId": "4065804",
+        "playerId": "4432639",
         "rank": 53,
         "value": null
       },
       {
-        "playerId": "4431767",
+        "playerId": "4900671",
         "rank": 54,
         "value": null
       },
       {
-        "playerId": "4683021",
+        "playerId": "1966",
         "rank": 55,
         "value": null
       },
       {
-        "playerId": "4065663",
+        "playerId": "3157465",
         "rank": 56,
         "value": null
       },
       {
-        "playerId": "4066211",
+        "playerId": "4431767",
         "rank": 57,
         "value": null
       },
       {
-        "playerId": "4278039",
+        "playerId": "4065663",
         "rank": 58,
         "value": null
       },
       {
-        "playerId": "4278580",
+        "playerId": "4278039",
         "rank": 59,
         "value": null
       },
       {
-        "playerId": "4395723",
+        "playerId": "4278580",
         "rank": 60,
         "value": null
       },
       {
-        "playerId": "4431736",
+        "playerId": "4683747",
         "rank": 61,
         "value": null
       },
       {
-        "playerId": "4683747",
+        "playerId": "4702382",
         "rank": 62,
         "value": null
       },
       {
-        "playerId": "4702382",
+        "playerId": "4845367",
         "rank": 63,
         "value": null
       },
       {
-        "playerId": "4711297",
+        "playerId": "4431678",
         "rank": 64,
         "value": null
       },
       {
-        "playerId": "5124612",
+        "playerId": "3908809",
         "rank": 65,
         "value": null
       },
       {
-        "playerId": "3908809",
+        "playerId": "3995",
         "rank": 66,
         "value": null
       },
       {
-        "playerId": "4066259",
+        "playerId": "4683021",
         "rank": 67,
         "value": null
       },
       {
-        "playerId": "4431678",
+        "playerId": "6478",
         "rank": 68,
         "value": null
       },
       {
-        "playerId": "4432639",
+        "playerId": "2991043",
         "rank": 69,
         "value": null
       },
       {
-        "playerId": "6478",
+        "playerId": "3137259",
         "rank": 70,
         "value": null
       },
       {
-        "playerId": "2991043",
+        "playerId": "3912848",
         "rank": 71,
         "value": null
       },
       {
-        "playerId": "3137259",
+        "playerId": "3913176",
         "rank": 72,
         "value": null
       },
       {
-        "playerId": "3912848",
+        "playerId": "4065648",
         "rank": 73,
         "value": null
       },
       {
-        "playerId": "3913176",
+        "playerId": "4066211",
         "rank": 74,
         "value": null
       },
@@ -3416,562 +3416,562 @@
         "value": null
       },
       {
-        "playerId": "4396971",
+        "playerId": "4395630",
         "rank": 76,
         "value": null
       },
       {
-        "playerId": "4397002",
+        "playerId": "4396971",
         "rank": 77,
         "value": null
       },
       {
-        "playerId": "4432181",
+        "playerId": "4397002",
         "rank": 78,
         "value": null
       },
       {
-        "playerId": "4432573",
+        "playerId": "4432181",
         "rank": 79,
         "value": null
       },
       {
-        "playerId": "4683689",
+        "playerId": "4432573",
         "rank": 80,
         "value": null
       },
       {
-        "playerId": "4683778",
+        "playerId": "4433192",
         "rank": 81,
         "value": null
       },
       {
-        "playerId": "4066757",
+        "playerId": "4683778",
         "rank": 82,
         "value": null
       },
       {
-        "playerId": "4433247",
+        "playerId": "4711297",
         "rank": 83,
         "value": null
       },
       {
-        "playerId": "4395630",
+        "playerId": "5061568",
         "rank": 84,
         "value": null
       },
       {
-        "playerId": "4432166",
+        "playerId": "4066354",
         "rank": 85,
         "value": null
       },
       {
-        "playerId": "4684272",
+        "playerId": "2991070",
         "rank": 86,
         "value": null
       },
       {
-        "playerId": "4845367",
+        "playerId": "4066757",
         "rank": 87,
         "value": null
       },
       {
-        "playerId": "3202",
+        "playerId": "4433247",
         "rank": 88,
         "value": null
       },
       {
-        "playerId": "3136193",
+        "playerId": "4066259",
         "rank": 89,
         "value": null
       },
       {
-        "playerId": "3147657",
+        "playerId": "4277951",
         "rank": 90,
         "value": null
       },
       {
-        "playerId": "4277847",
+        "playerId": "4431736",
         "rank": 91,
         "value": null
       },
       {
-        "playerId": "4278077",
+        "playerId": "4432166",
         "rank": 92,
         "value": null
       },
       {
-        "playerId": "4432158",
+        "playerId": "4684272",
         "rank": 93,
         "value": null
       },
       {
-        "playerId": "4566434",
+        "playerId": "5124612",
         "rank": 94,
         "value": null
       },
       {
-        "playerId": "3078576",
+        "playerId": "3202",
         "rank": 95,
         "value": null
       },
       {
-        "playerId": "3995",
+        "playerId": "3136193",
         "rank": 96,
         "value": null
       },
       {
-        "playerId": "3064290",
+        "playerId": "3147657",
         "rank": 97,
         "value": null
       },
       {
-        "playerId": "4278073",
+        "playerId": "4277847",
         "rank": 98,
         "value": null
       },
       {
-        "playerId": "2991070",
+        "playerId": "4432158",
         "rank": 99,
         "value": null
       },
       {
-        "playerId": "2991350",
+        "playerId": "4566434",
         "rank": 100,
         "value": null
       },
       {
-        "playerId": "3064514",
+        "playerId": "4683689",
         "rank": 101,
         "value": null
       },
       {
-        "playerId": "3907498",
+        "playerId": "3064290",
         "rank": 102,
         "value": null
       },
       {
-        "playerId": "4065648",
+        "playerId": "4278073",
         "rank": 103,
         "value": null
       },
       {
-        "playerId": "4066320",
+        "playerId": "2991350",
         "rank": 104,
         "value": null
       },
       {
-        "playerId": "4277951",
+        "playerId": "3064514",
         "rank": 105,
         "value": null
       },
       {
-        "playerId": "4432823",
+        "playerId": "3078576",
         "rank": 106,
         "value": null
       },
       {
-        "playerId": "4437244",
+        "playerId": "3133603",
         "rank": 107,
         "value": null
       },
       {
-        "playerId": "4702177",
+        "playerId": "4066320",
         "rank": 108,
         "value": null
       },
       {
-        "playerId": "4712849",
+        "playerId": "4432823",
         "rank": 109,
         "value": null
       },
       {
-        "playerId": "4869342",
+        "playerId": "4437244",
         "rank": 110,
         "value": null
       },
       {
-        "playerId": "3138196",
+        "playerId": "4702177",
         "rank": 111,
         "value": null
       },
       {
-        "playerId": "3133603",
+        "playerId": "4712849",
         "rank": 112,
         "value": null
       },
       {
-        "playerId": "3032979",
+        "playerId": "4869342",
         "rank": 113,
         "value": null
       },
       {
-        "playerId": "3914044",
+        "playerId": "3138196",
         "rank": 114,
         "value": null
       },
       {
-        "playerId": "4712863",
+        "playerId": "3032979",
         "rank": 115,
         "value": null
       },
       {
-        "playerId": "4066354",
+        "playerId": "3907498",
         "rank": 116,
         "value": null
       },
       {
-        "playerId": "4914336",
+        "playerId": "3914044",
         "rank": 117,
         "value": null
       },
       {
-        "playerId": "5107199",
+        "playerId": "4278077",
         "rank": 118,
         "value": null
       },
       {
-        "playerId": "5105565",
+        "playerId": "4712863",
         "rank": 119,
         "value": null
       },
       {
-        "playerId": "6440",
+        "playerId": "5105565",
         "rank": 120,
         "value": null
       },
       {
-        "playerId": "3062679",
+        "playerId": "4914336",
         "rank": 121,
         "value": null
       },
       {
-        "playerId": "4431671",
+        "playerId": "4871144",
         "rank": 122,
         "value": null
       },
       {
-        "playerId": "4023",
+        "playerId": "5107199",
         "rank": 123,
         "value": null
       },
       {
-        "playerId": "6427",
+        "playerId": "6440",
         "rank": 124,
         "value": null
       },
       {
-        "playerId": "6477",
+        "playerId": "3062679",
         "rank": 125,
         "value": null
       },
       {
-        "playerId": "6578",
+        "playerId": "4431671",
         "rank": 126,
         "value": null
       },
       {
-        "playerId": "2489663",
+        "playerId": "4023",
         "rank": 127,
         "value": null
       },
       {
-        "playerId": "2528426",
+        "playerId": "6427",
         "rank": 128,
         "value": null
       },
       {
-        "playerId": "2580365",
+        "playerId": "6477",
         "rank": 129,
         "value": null
       },
       {
-        "playerId": "2596112",
+        "playerId": "6578",
         "rank": 130,
         "value": null
       },
       {
-        "playerId": "2968436",
+        "playerId": "2489663",
         "rank": 131,
         "value": null
       },
       {
-        "playerId": "2993874",
+        "playerId": "2528426",
         "rank": 132,
         "value": null
       },
       {
-        "playerId": "3032976",
+        "playerId": "2580365",
         "rank": 133,
         "value": null
       },
       {
-        "playerId": "3064560",
+        "playerId": "2596112",
         "rank": 134,
         "value": null
       },
       {
-        "playerId": "3102529",
+        "playerId": "2968436",
         "rank": 135,
         "value": null
       },
       {
-        "playerId": "3133626",
+        "playerId": "2993874",
         "rank": 136,
         "value": null
       },
       {
-        "playerId": "3133635",
+        "playerId": "3032976",
         "rank": 137,
         "value": null
       },
       {
-        "playerId": "3134908",
+        "playerId": "3102529",
         "rank": 138,
         "value": null
       },
       {
-        "playerId": "3135046",
+        "playerId": "3133626",
         "rank": 139,
         "value": null
       },
       {
-        "playerId": "3136777",
+        "playerId": "3133635",
         "rank": 140,
         "value": null
       },
       {
-        "playerId": "3150844",
+        "playerId": "3134908",
         "rank": 141,
         "value": null
       },
       {
-        "playerId": "3922230",
+        "playerId": "3135046",
         "rank": 142,
         "value": null
       },
       {
-        "playerId": "3934723",
+        "playerId": "3136777",
         "rank": 143,
         "value": null
       },
       {
-        "playerId": "4065673",
+        "playerId": "3150844",
         "rank": 144,
         "value": null
       },
       {
-        "playerId": "4066317",
+        "playerId": "3922230",
         "rank": 145,
         "value": null
       },
       {
-        "playerId": "4066328",
+        "playerId": "3934723",
         "rank": 146,
         "value": null
       },
       {
-        "playerId": "4066387",
+        "playerId": "4065673",
         "rank": 147,
         "value": null
       },
       {
-        "playerId": "4067017",
+        "playerId": "4066317",
         "rank": 148,
         "value": null
       },
       {
-        "playerId": "4222252",
+        "playerId": "4066328",
         "rank": 149,
         "value": null
       },
       {
-        "playerId": "4277869",
+        "playerId": "4066387",
         "rank": 150,
         "value": null
       },
       {
-        "playerId": "4278129",
+        "playerId": "4067017",
         "rank": 151,
         "value": null
       },
       {
-        "playerId": "4278402",
+        "playerId": "4222252",
         "rank": 152,
         "value": null
       },
       {
-        "playerId": "4278562",
+        "playerId": "4277869",
         "rank": 153,
         "value": null
       },
       {
-        "playerId": "4278572",
+        "playerId": "4278129",
         "rank": 154,
         "value": null
       },
       {
-        "playerId": "4280151",
+        "playerId": "4278402",
         "rank": 155,
         "value": null
       },
       {
-        "playerId": "4280245",
+        "playerId": "4278562",
         "rank": 156,
         "value": null
       },
       {
-        "playerId": "4291678",
+        "playerId": "4278572",
         "rank": 157,
         "value": null
       },
       {
-        "playerId": "4348700",
+        "playerId": "4280151",
         "rank": 158,
         "value": null
       },
       {
-        "playerId": "4351852",
+        "playerId": "4280245",
         "rank": 159,
         "value": null
       },
       {
-        "playerId": "4397077",
+        "playerId": "4291678",
         "rank": 160,
         "value": null
       },
       {
-        "playerId": "4397183",
+        "playerId": "4348700",
         "rank": 161,
         "value": null
       },
       {
-        "playerId": "4397424",
+        "playerId": "4351852",
         "rank": 162,
         "value": null
       },
       {
-        "playerId": "4398390",
+        "playerId": "4397077",
         "rank": 163,
         "value": null
       },
       {
-        "playerId": "4431675",
+        "playerId": "4397183",
         "rank": 164,
         "value": null
       },
       {
-        "playerId": "4431684",
+        "playerId": "4397424",
         "rank": 165,
         "value": null
       },
       {
-        "playerId": "4432107",
+        "playerId": "4398390",
         "rank": 166,
         "value": null
       },
       {
-        "playerId": "4432446",
+        "playerId": "4431675",
         "rank": 167,
         "value": null
       },
       {
-        "playerId": "4433159",
+        "playerId": "4431684",
         "rank": 168,
         "value": null
       },
       {
-        "playerId": "4433607",
+        "playerId": "4432107",
         "rank": 169,
         "value": null
       },
       {
-        "playerId": "4433621",
+        "playerId": "4432446",
         "rank": 170,
         "value": null
       },
       {
-        "playerId": "4578893",
+        "playerId": "4433159",
         "rank": 171,
         "value": null
       },
       {
-        "playerId": "4592691",
+        "playerId": "4433607",
         "rank": 172,
         "value": null
       },
       {
-        "playerId": "4594326",
+        "playerId": "4433621",
         "rank": 173,
         "value": null
       },
       {
-        "playerId": "4601023",
+        "playerId": "4578893",
         "rank": 174,
         "value": null
       },
       {
-        "playerId": "4683692",
+        "playerId": "4592691",
         "rank": 175,
         "value": null
       },
       {
-        "playerId": "4683771",
+        "playerId": "4594326",
         "rank": 176,
         "value": null
       },
       {
-        "playerId": "4683774",
+        "playerId": "4601023",
         "rank": 177,
         "value": null
       },
       {
-        "playerId": "4683935",
+        "playerId": "4683692",
         "rank": 178,
         "value": null
       },
       {
-        "playerId": "4684740",
+        "playerId": "4683771",
         "rank": 179,
         "value": null
       },
       {
-        "playerId": "4684742",
+        "playerId": "4683935",
         "rank": 180,
         "value": null
       },
       {
-        "playerId": "4701233",
+        "playerId": "4684740",
         "rank": 181,
         "value": null
       },
       {
-        "playerId": "4701992",
+        "playerId": "4684742",
         "rank": 182,
         "value": null
       },
       {
-        "playerId": "4870562",
+        "playerId": "4701233",
         "rank": 183,
         "value": null
       },
       {
-        "playerId": "4871144",
+        "playerId": "4701992",
         "rank": 184,
         "value": null
       },
       {
-        "playerId": "4888725",
+        "playerId": "4870562",
         "rank": 185,
         "value": null
       },
       {
-        "playerId": "5023693",
+        "playerId": "4888725",
         "rank": 186,
         "value": null
       },
       {
-        "playerId": "5037871",
+        "playerId": "5023693",
         "rank": 187,
         "value": null
       },
