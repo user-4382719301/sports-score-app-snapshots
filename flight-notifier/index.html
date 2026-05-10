@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1020" />
+    <title>Flight Notifier</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='52' font-size='52'>%E2%9C%88%EF%B8%8F</text></svg>" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>✈️ Flight Notifier</h1>
+        <p class="sub">Get a notification whenever an aircraft passes overhead.</p>
+      </header>
+
+      <section class="card">
+        <div class="row">
+          <button id="watch-btn" class="primary">Start watching</button>
+          <span id="status" class="status idle">Idle</span>
+        </div>
+
+        <div class="grid">
+          <label>
+            Radius (km)
+            <input id="radius" type="number" min="1" max="200" step="1" value="15" />
+          </label>
+          <label>
+            Poll every (s)
+            <input id="interval" type="number" min="10" max="600" step="5" value="30" />
+          </label>
+          <label>
+            Min altitude (m, optional)
+            <input id="min-alt" type="number" min="0" step="100" placeholder="0" />
+          </label>
+          <label>
+            Max altitude (m, optional)
+            <input id="max-alt" type="number" min="0" step="100" placeholder="∞" />
+          </label>
+        </div>
+
+        <div class="row meta">
+          <span>Location: <span id="loc">—</span></span>
+          <span>Last check: <span id="last-check">—</span></span>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Currently in range</h2>
+        <ul id="flights" class="flights">
+          <li class="empty">No flights detected yet.</li>
+        </ul>
+      </section>
+
+      <footer>
+        <p>
+          Aircraft data from the <a href="https://opensky-network.org/" target="_blank" rel="noopener">OpenSky Network</a>.
+          Notifications fire only while this page is open.
+        </p>
+      </footer>
+    </main>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

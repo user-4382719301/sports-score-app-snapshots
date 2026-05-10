@@ -1,0 +1,120 @@
+:root {
+  --bg: #0b1020;
+  --panel: #131a32;
+  --panel-2: #1a2244;
+  --text: #e8ecf8;
+  --muted: #9aa3c7;
+  --accent: #6aa6ff;
+  --accent-2: #8ce0a3;
+  --danger: #ff7676;
+  --warn: #ffd166;
+  --border: #243056;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: radial-gradient(1200px 800px at 20% -10%, #1a2454 0%, var(--bg) 60%) fixed;
+  color: var(--text);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 18px 64px;
+}
+
+header h1 { margin: 0 0 4px; font-size: 28px; }
+header .sub { margin: 0 0 20px; color: var(--muted); }
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.card h2 { margin: 0 0 10px; font-size: 16px; color: var(--muted); font-weight: 600; }
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.row.meta {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  justify-content: space-between;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  color: var(--muted);
+  gap: 4px;
+}
+
+input {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+input:focus { border-color: var(--accent); }
+
+button {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 14px;
+  font: inherit;
+  cursor: pointer;
+}
+button.primary { background: var(--accent); color: #06122c; border-color: transparent; font-weight: 600; }
+button.primary.stop { background: var(--danger); color: #2a0808; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.status {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+.status.idle { color: var(--muted); }
+.status.watching { color: var(--accent-2); border-color: var(--accent-2); }
+.status.error { color: var(--danger); border-color: var(--danger); }
+
+.flights { list-style: none; padding: 0; margin: 0; }
+.flights li {
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 12px;
+}
+.flights li:first-child { border-top: 0; }
+.flights li.empty { color: var(--muted); display: block; }
+.flights .callsign { font-weight: 600; letter-spacing: 0.5px; }
+.flights .meta-line { color: var(--muted); font-size: 12px; grid-column: 1 / -1; }
+.flights .dist { color: var(--accent); font-variant-numeric: tabular-nums; }
+
+footer { color: var(--muted); font-size: 12px; margin-top: 12px; }
+footer a { color: var(--accent); }
