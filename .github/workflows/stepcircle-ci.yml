@@ -1,0 +1,32 @@
+name: StepCircle CI
+
+on:
+  push:
+    paths:
+      - 'stepcircle/**'
+      - '.github/workflows/stepcircle-ci.yml'
+  pull_request:
+    paths:
+      - 'stepcircle/**'
+      - '.github/workflows/stepcircle-ci.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stepcircle
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: stepcircle/package-lock.json
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm test
+      - name: Syntax-check Cloud Functions
+        run: |
+          node --check firebase/functions/index.js
+          node --check firebase/functions/scoring.js

@@ -8,6 +8,7 @@ import {
 } from 'firebase/auth';
 import {
   addDoc,
+  arrayUnion,
   collection,
   doc,
   getDoc,
@@ -18,6 +19,7 @@ import {
   query,
   serverTimestamp,
   setDoc,
+  updateDoc,
   where,
   type Firestore,
 } from 'firebase/firestore';
@@ -309,5 +311,12 @@ export class FirebaseSocialService implements SocialService {
       },
       { merge: true }
     );
+  }
+
+  async registerPushToken(token: string): Promise<void> {
+    const user = await this.ensureSignedIn();
+    await updateDoc(doc(this.db, 'users', user.uid), {
+      expoPushTokens: arrayUnion(token),
+    });
   }
 }

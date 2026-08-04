@@ -19,4 +19,6 @@ export interface SocialService {
   inviteToCompetition(friendId: string): Promise<Competition>;
   /** Publish my current day so friends see live numbers and the server can score competitions. */
   publishMyDay(day: DailyActivity): Promise<void>;
+  /** Register this device's push token so cheers and feed events notify me. */
+  registerPushToken(token: string): Promise<void>;
 }

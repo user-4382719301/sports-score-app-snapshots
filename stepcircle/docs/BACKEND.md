@@ -41,7 +41,7 @@ users/{uid}
   friendCode                          # immutable after creation
   friendIds: [uid, ...]               # ONLY written by the addFriend function
   lifetimeSteps, streakDays           # ONLY written by onDayWritten
-  fcmTokens: [token, ...]             # optional, for push
+  expoPushTokens: [token, ...]        # registered by the app on launch
 
 users/{uid}/days/{YYYY-MM-DD}         # written by publishMyDay(), throttled
   steps, distanceMeters, activeMinutes, floorsClimbed
@@ -67,7 +67,7 @@ competitions/{id}
 |---|---|---|
 | `addFriend` | callable | Resolves a friend code and creates the **mutual** link in one transaction. Clients can't write `friendIds` at all. |
 | `onDayWritten` | day doc write | Lifetime steps, streak recompute, "closed all rings" feed events, and **competition points** — scoring uses `scoring.js`, a direct port of `src/lib/rings.ts`, so the server and the UI always agree. Clients never write points; it's the scoreboard. |
-| `onFeedCreated` | feed doc create | FCM push to the event's audience. |
+| `onFeedCreated` | feed doc create | Push to the event's audience via the Expo push API (cross-platform, no APNs/FCM client setup). |
 | `finishCompetitions` | nightly schedule | Flips expired competitions to `finished` and posts the winner announcement. |
 
 `firestore.rules` enforces the same boundaries: profile days are readable

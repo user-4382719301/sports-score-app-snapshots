@@ -60,12 +60,13 @@ UI can render both totals and day-by-day breakdowns.
 
 ## What's deliberately not here yet
 
-- Persistence of goals/units (add `zustand/middleware` persist +
-  AsyncStorage — already a dependency for Firebase auth persistence).
-- Registering FCM tokens from the client (the `onFeedCreated` push function
-  is deployed but `users/{uid}.fcmTokens` is never populated yet).
 - Background step observers (HealthKit background delivery is enabled in
   the entitlements; wiring `initStepCountObserver` → store refresh is a
-  small follow-up).
+  small follow-up — the app currently refreshes on launch, foreground, and
+  pull-to-refresh).
 - Linking Apple/Google credentials onto the anonymous Firebase account so
   identities survive device swaps.
+
+Goals/units persist across launches (zustand `persist` + AsyncStorage),
+and in Firebase mode the app registers an Expo push token on launch so
+cheers and feed events arrive as notifications.

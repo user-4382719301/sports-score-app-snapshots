@@ -37,15 +37,27 @@ function sumSamples(samples: HealthValue[]): number {
 export class HealthKitAdapter implements HealthAdapter {
   readonly source = 'healthkit' as const;
 
+  // The JS module can load with its native methods missing (Expo Go,
+  // simulators, tests), so probe before calling and treat that as absent.
   isAvailable(): Promise<boolean> {
     return new Promise((resolve) => {
-      AppleHealthKit.isAvailable((err, available) => resolve(!err && !!available));
+      if (typeof AppleHealthKit?.isAvailable !== 'function') return resolve(false);
+      try {
+        AppleHealthKit.isAvailable((err, available) => resolve(!err && !!available));
+      } catch {
+        resolve(false);
+      }
     });
   }
 
   requestPermissions(): Promise<boolean> {
     return new Promise((resolve) => {
-      AppleHealthKit.initHealthKit(PERMISSIONS, (err) => resolve(!err));
+      if (typeof AppleHealthKit?.initHealthKit !== 'function') return resolve(false);
+      try {
+        AppleHealthKit.initHealthKit(PERMISSIONS, (err) => resolve(!err));
+      } catch {
+        resolve(false);
+      }
     });
   }
 
@@ -80,19 +92,24 @@ export class HealthKitAdapter implements HealthAdapter {
   /** Steps bucketed into 24 clock hours via 60-minute sample periods. */
   private hourlySteps(bounds: { startDate: string; endDate: string }): Promise<number[]> {
     return new Promise((resolve) => {
-      AppleHealthKit.getDailyStepCountSamples(
-        { ...bounds, period: 60 },
-        (err, samples: Array<{ startDate: string; value: number }>) => {
-          const buckets = new Array(24).fill(0);
-          if (!err && Array.isArray(samples)) {
-            for (const s of samples) {
-              const hour = new Date(s.startDate).getHours();
-              buckets[hour] += s.value ?? 0;
+      const empty = new Array(24).fill(0);
+      try {
+        AppleHealthKit.getDailyStepCountSamples(
+          { ...bounds, period: 60 },
+          (err, samples: Array<{ startDate: string; value: number }>) => {
+            const buckets = new Array(24).fill(0);
+            if (!err && Array.isArray(samples)) {
+              for (const s of samples) {
+                const hour = new Date(s.startDate).getHours();
+                buckets[hour] += s.value ?? 0;
+              }
             }
+            resolve(buckets.map(Math.round));
           }
-          resolve(buckets.map(Math.round));
-        }
-      );
+        );
+      } catch {
+        resolve(empty);
+      }
     });
   }
 
@@ -101,9 +118,13 @@ export class HealthKitAdapter implements HealthAdapter {
     bounds: { startDate: string; endDate: string }
   ): Promise<number> {
     return new Promise((resolve) => {
-      query(bounds, (err, results) => {
-        resolve(!err && Array.isArray(results) ? sumSamples(results) : 0);
-      });
+      try {
+        query(bounds, (err, results) => {
+          resolve(!err && Array.isArray(results) ? sumSamples(results) : 0);
+        });
+      } catch {
+        resolve(0);
+      }
     });
   }
 }

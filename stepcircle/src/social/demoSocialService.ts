@@ -162,4 +162,8 @@ export class DemoSocialService implements SocialService {
   async publishMyDay(): Promise<void> {
     // No-op in demo mode; the Firebase backend upserts today's totals here.
   }
+
+  async registerPushToken(): Promise<void> {
+    // No-op in demo mode; there is no server to push from.
+  }
 }

@@ -1,4 +1,6 @@
 import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
+import { SOCIAL_BACKEND } from '../config';
 import {
   DEFAULT_GOALS,
   type ActivitySource,
@@ -10,7 +12,7 @@ import {
   type Goals,
   type MyProfile,
 } from '../types';
-import { createHealthAdapter, type HealthAdapter } from '../health';
+import { createHealthAdapter, DemoHealthAdapter, type HealthAdapter } from '../health';
 import { createSocialService, type SocialService } from '../social';
 import { computeEarnedAwards } from '../lib/awards';
 import { currentStreak, longestStreak } from '../lib/streaks';
@@ -19,8 +21,42 @@ import { todayKey } from '../lib/dates';
 
 const HISTORY_DAYS = 30;
 
-const health: HealthAdapter = createHealthAdapter();
+let health: HealthAdapter = createHealthAdapter();
 const social: SocialService = createSocialService();
+
+/** AsyncStorage when present; harmless in-memory stub in tests/web preview. */
+const settingsStorage = createJSONStorage(() => {
+  try {
+    return require('@react-native-async-storage/async-storage').default;
+  } catch {
+    return {
+      getItem: async () => null,
+      setItem: async () => undefined,
+      removeItem: async () => undefined,
+    };
+  }
+});
+
+/**
+ * Ask the OS for a push token and register it with the backend. Skipped in
+ * demo mode (nothing to push from) and wherever expo-notifications or the
+ * push service is unavailable (Expo Go, simulators).
+ */
+async function registerPushTokenIfAvailable(): Promise<void> {
+  if (SOCIAL_BACKEND !== 'firebase') return;
+  try {
+    const Notifications = require('expo-notifications');
+    let { status } = await Notifications.getPermissionsAsync();
+    if (status !== 'granted') {
+      ({ status } = await Notifications.requestPermissionsAsync());
+    }
+    if (status !== 'granted') return;
+    const token: string = (await Notifications.getExpoPushTokenAsync()).data;
+    await social.registerPushToken(token);
+  } catch (e) {
+    console.warn('[push] token registration skipped', e);
+  }
+}
 
 interface AppState {
   ready: boolean;
@@ -61,7 +97,9 @@ function competitionsWonBy(profileId: string, competitions: Competition[]): numb
   }).length;
 }
 
-export const useAppStore = create<AppState>((set, get) => ({
+export const useAppStore = create<AppState>()(
+  persist(
+    (set, get) => ({
   ready: false,
   permissionsGranted: false,
   healthSource: health.source,
@@ -78,7 +116,21 @@ export const useAppStore = create<AppState>((set, get) => ({
   awards: [],
 
   init: async () => {
-    const available = await health.isAvailable();
+    let available = false;
+    try {
+      available = await health.isAvailable();
+    } catch {
+      available = false;
+    }
+    // No platform health store at all (Expo Go, simulator, tests): use demo
+    // data so the app stays explorable. A user who merely denied permission
+    // keeps the real adapter (queries error → zeros) rather than fake data.
+    if (!available && health.source !== 'demo') {
+      console.warn('[health] platform health store unavailable, using demo data');
+      health = new DemoHealthAdapter();
+      set({ healthSource: health.source });
+      available = true;
+    }
     const permissionsGranted = available ? await health.requestPermissions() : false;
     set({ permissionsGranted });
     try {
@@ -89,6 +141,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
     await get().refresh();
     set({ ready: true });
+    void registerPushTokenIfAvailable();
   },
 
   refresh: async () => {
@@ -149,4 +202,13 @@ export const useAppStore = create<AppState>((set, get) => ({
     await social.inviteToCompetition(friendId);
     set({ competitions: await social.getCompetitions() });
   },
-}));
+    }),
+    {
+      name: 'stepcircle-settings',
+      storage: settingsStorage,
+      // Only user preferences persist; activity and social data are
+      // re-fetched from their sources on every launch.
+      partialize: (state) => ({ goals: state.goals, useMetric: state.useMetric }),
+    }
+  )
+);

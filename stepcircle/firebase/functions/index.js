@@ -114,20 +114,35 @@ exports.onDayWritten = onDocumentWritten('users/{uid}/days/{date}', async (event
   );
 });
 
-/** Push a notification to everyone in a new feed event's audience. */
+/**
+ * Push a notification to everyone in a new feed event's audience, via the
+ * Expo push service — works for both iOS and Android with no APNs/FCM
+ * client configuration. Tokens are registered by the app on launch
+ * (users/{uid}.expoPushTokens).
+ */
 exports.onFeedCreated = onDocumentCreated('feed/{id}', async (event) => {
   const feedEvent = event.data?.data();
   if (!feedEvent) return;
-  const tokens = [];
+  const tokens = new Set();
   for (const uid of feedEvent.audience || []) {
     const user = await db.doc(`users/${uid}`).get();
-    tokens.push(...(user.data()?.fcmTokens || []));
+    for (const token of user.data()?.expoPushTokens || []) tokens.add(token);
   }
-  if (!tokens.length) return;
-  await admin.messaging().sendEachForMulticast({
-    tokens,
-    notification: { title: 'StepCircle', body: feedEvent.message },
+  if (!tokens.size) return;
+  const messages = [...tokens].map((to) => ({
+    to,
+    title: 'StepCircle',
+    body: feedEvent.message,
+    sound: 'default',
+  }));
+  const response = await fetch('https://exp.host/--/api/v2/push/send', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(messages),
   });
+  if (!response.ok) {
+    console.error('Expo push failed', response.status, await response.text());
+  }
 });
 
 /** Nightly: close out finished competitions and announce the winner. */

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, AppState, StyleSheet, Text, View } from 'react-native';
 import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -25,6 +25,16 @@ export default function App() {
   useEffect(() => {
     void init();
   }, [init]);
+
+  // Pull fresh health + social data whenever the app returns to the foreground,
+  // so rings reflect steps taken while the phone was pocketed.
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (state) => {
+      const { ready: isReady, refresh } = useAppStore.getState();
+      if (state === 'active' && isReady) void refresh();
+    });
+    return () => subscription.remove();
+  }, []);
 
   if (!ready) {
     return (
