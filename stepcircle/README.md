@@ -3,6 +3,10 @@
 A social step counting app for iOS and Android, built with Expo / React
 Native, borrowing the concepts that make Apple Fitness sticky:
 
+| Summary | Sharing | Compete | Awards |
+|---|---|---|---|
+| ![Summary](docs/screenshots/1-summary.png) | ![Sharing](docs/screenshots/3-sharing.png) | ![Compete](docs/screenshots/5-compete.png) | ![Awards](docs/screenshots/6-awards.png) |
+
 - **Activity rings** — Move (steps), Exercise (active minutes) and an
   Active-hours ring (hours with 250+ steps, the Stand-ring analog), drawn
   as the familiar concentric trio.
@@ -32,11 +36,14 @@ companion apps (rings on the wrist) are provided as reference code in
 npm install
 
 # Fastest look around (demo data, no native health modules needed):
-npx expo start          # then open in Expo Go — the app auto-falls back to demo mode
+npx expo start --web    # in a browser, or `npx expo start` for Expo Go
 
 # Real health data requires a dev build (native modules):
 npx expo prebuild
 npx expo run:ios        # or: npx expo run:android
+
+# Device builds for TestFlight / Play internal testing (eas.json included):
+npx eas build --profile preview --platform all
 ```
 
 - In **Expo Go** / simulators, the health adapter falls back to
