@@ -1,5 +1,9 @@
 # sports-score-app-snapshots
 
+> **Also in this repo:** [`stepcircle/`](stepcircle/) — StepCircle, a
+> social step counting app (iOS + Android + smartwatches) in the spirit of
+> Apple Fitness. See its [README](stepcircle/README.md).
+
 Daily snapshots of ESPN's qualified-leaderboard ranks for every stat the
 companion app at `sports-score-app` cares about. Used to render rank-change
 deltas (▲13 / ▼2) in the app without needing a backend.

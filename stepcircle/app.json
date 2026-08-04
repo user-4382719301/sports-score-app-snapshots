@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "StepCircle",
+    "slug": "stepcircle",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#000000",
+    "splash": {
+      "backgroundColor": "#000000"
+    },
+    "ios": {
+      "bundleIdentifier": "com.stepcircle.app",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSHealthShareUsageDescription": "StepCircle reads your steps, distance, exercise minutes and flights climbed from Health to show your rings and share progress with friends you choose.",
+        "NSHealthUpdateUsageDescription": "StepCircle can save workouts you record back to Health."
+      },
+      "entitlements": {
+        "com.apple.developer.healthkit": true,
+        "com.apple.developer.healthkit.background-delivery": true
+      }
+    },
+    "android": {
+      "package": "com.stepcircle.app",
+      "minSdkVersion": 26,
+      "permissions": [
+        "android.permission.health.READ_STEPS",
+        "android.permission.health.READ_DISTANCE",
+        "android.permission.health.READ_EXERCISE",
+        "android.permission.health.READ_FLOORS_CLIMBED",
+        "android.permission.ACTIVITY_RECOGNITION"
+      ]
+    },
+    "plugins": [
+      [
+        "react-native-health",
+        {
+          "isClinicalDataEnabled": false
+        }
+      ],
+      "react-native-health-connect"
+    ]
+  }
+}
