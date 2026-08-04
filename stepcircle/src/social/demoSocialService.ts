@@ -4,6 +4,7 @@ import {
   type Competition,
   type FeedEvent,
   type Friend,
+  type MyProfile,
 } from '../types';
 import { addDays, dayRange, todayKey } from '../lib/dates';
 import { computeRings, competitionPointsForDay } from '../lib/rings';
@@ -42,8 +43,32 @@ export class DemoSocialService implements SocialService {
   private extraFeed: FeedEvent[] = [];
   private extraCompetitions: Competition[] = [];
 
+  async getMe(): Promise<MyProfile> {
+    return {
+      id: 'me',
+      displayName: 'You',
+      initials: 'ME',
+      avatarColor: '#0A84FF',
+      goals: DEFAULT_GOALS,
+      friendCode: 'DEMO42',
+    };
+  }
+
   async getFriends(): Promise<Friend[]> {
     return this.friends;
+  }
+
+  async addFriend(code: string): Promise<Friend | null> {
+    const trimmed = code.trim().toUpperCase();
+    if (!trimmed) return null;
+    const friend = buildFriend({
+      id: `code-${trimmed.toLowerCase()}`,
+      displayName: `Walker ${trimmed}`,
+      initials: trimmed.slice(0, 2),
+      avatarColor: '#FF9F0A',
+    });
+    this.friends = [...this.friends, friend];
+    return friend;
   }
 
   async getFeed(): Promise<FeedEvent[]> {
@@ -135,6 +160,6 @@ export class DemoSocialService implements SocialService {
   }
 
   async publishMyDay(): Promise<void> {
-    // No-op in demo mode; a real backend would upsert today's totals here.
+    // No-op in demo mode; the Firebase backend upserts today's totals here.
   }
 }

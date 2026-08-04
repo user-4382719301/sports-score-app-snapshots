@@ -6,19 +6,24 @@ import { formatInt } from '../lib/format';
 import { colors, spacing, type as t } from '../theme';
 import { MAX_DAILY_POINTS, type Competition } from '../types';
 
-function participantName(profileId: string, friends: { id: string; displayName: string }[]): string {
-  if (profileId === 'me') return 'You';
+function participantName(
+  profileId: string,
+  myId: string,
+  friends: { id: string; displayName: string }[]
+): string {
+  if (profileId === myId) return 'You';
   return friends.find((f) => f.id === profileId)?.displayName ?? 'Friend';
 }
 
 function CompetitionCard({ competition }: { competition: Competition }) {
   const friends = useAppStore((s) => s.friends);
+  const myId = useAppStore((s) => s.myId);
   const scores = competition.participants
     .map((p) => ({
-      name: participantName(p.profileId, friends),
+      name: participantName(p.profileId, myId, friends),
       total: totalPoints(p.dailyPoints),
       dailyPoints: p.dailyPoints,
-      isMe: p.profileId === 'me',
+      isMe: p.profileId === myId,
     }))
     .sort((a, b) => b.total - a.total);
   const leaderTotal = scores[0]?.total || 1;

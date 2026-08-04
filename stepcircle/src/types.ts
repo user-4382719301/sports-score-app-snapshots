@@ -46,6 +46,12 @@ export interface Profile {
   goals: Goals;
 }
 
+/** The signed-in user's own profile. */
+export interface MyProfile extends Profile {
+  /** Short shareable code friends use to add me. */
+  friendCode: string;
+}
+
 export interface Friend extends Profile {
   today: DailyActivity;
   /** Most recent 7 days, oldest first, including today. */

@@ -1,10 +1,36 @@
-# Making the social layer real
+# The social backend
 
 Everything social goes through one interface —
-`src/social/SocialService.ts` — currently implemented by an on-device demo
-backend. To go multi-user, implement the same five methods against a
-server. Firebase (Auth + Firestore + Cloud Functions + FCM) is the lowest
-lift; the shapes below map 1:1 onto the existing TypeScript types.
+`src/social/SocialService.ts` — with two implementations:
+
+- **`demoSocialService.ts`** (default): on-device fake friends, feed and
+  competitions. Zero setup; what you get in Expo Go.
+- **`firebaseSocialService.ts`**: real multi-user backend on Firebase
+  (anonymous Auth + Firestore + Cloud Functions). The server pieces it
+  pairs with live in [`../firebase/`](../firebase/).
+
+## Turning on the real backend
+
+1. Create a Firebase project; enable **Anonymous** sign-in (Authentication
+   → Sign-in method) and **Firestore**.
+2. Copy the web-app config into `FIREBASE_CONFIG` in `src/config.ts` and
+   set `SOCIAL_BACKEND = 'firebase'`.
+3. Deploy rules, indexes and functions:
+   ```sh
+   cd firebase
+   npm --prefix functions install
+   firebase deploy --only firestore,functions
+   ```
+4. `npm install` in the app (pulls `firebase` +
+   `@react-native-async-storage/async-storage`, which persists the
+   anonymous user across launches) and rebuild.
+
+Users start as anonymous accounts with a generated name and a 6-character
+**friend code** (shown on the Sharing tab). Trading codes is the whole
+friending flow — same spirit as Apple Fitness sharing invites. To make
+accounts portable across devices, link Apple/Google credentials onto the
+anonymous user with `expo-auth-session` + `linkWithCredential` (not wired
+up yet).
 
 ## Firestore schema
 
@@ -12,54 +38,50 @@ lift; the shapes below map 1:1 onto the existing TypeScript types.
 users/{uid}
   displayName, initials, avatarColor
   goals: { steps, activeMinutes, activeHours }
-  lifetimeSteps, streakDays
-  friendIds: [uid, ...]              # mutual after invite acceptance
+  friendCode                          # immutable after creation
+  friendIds: [uid, ...]               # ONLY written by the addFriend function
+  lifetimeSteps, streakDays           # ONLY written by onDayWritten
+  fcmTokens: [token, ...]             # optional, for push
 
-users/{uid}/days/{YYYY-MM-DD}       # written by publishMyDay()
+users/{uid}/days/{YYYY-MM-DD}         # written by publishMyDay(), throttled
   steps, distanceMeters, activeMinutes, floorsClimbed
   hourlySteps: [24 ints]
   updatedAt
 
-feed/{eventId}                       # fan-out on write via Cloud Function
-  friendId, kind, message, at
-  audience: [uid, ...]
+friendCodes/{CODE} -> { uid }         # lookup table, one per user
+
+feed/{eventId}
+  friendId (the actor), kind, message, at
+  audience: [uid, ...]                # who may read it
 
 competitions/{id}
-  name, startDate, endDate, status   # invited | active | finished
+  name, startDate, endDate
+  status: invited | active | finished # invitee flips invited -> active
   participantIds: [uid, uid]
-  points: { uid: [dayPoints...] }    # recomputed server-side, see below
+  points: { uid: [dayPoints...] }     # ONLY written by onDayWritten
 ```
 
-## Method mapping
+## What the server owns (Cloud Functions, `firebase/functions/`)
 
-| `SocialService` method | Implementation |
-|---|---|
-| `getFriends()` | read `users` docs for `friendIds`, plus each friend's last 7 `days` docs |
-| `getFeed()` | query `feed` where `audience contains uid`, ordered by `at desc` |
-| `getCompetitions()` | query `competitions` where `participantIds contains uid` |
-| `sendCheer()` | write a `feed` event; a Cloud Function sends the FCM push |
-| `inviteToCompetition()` | create `competitions` doc with `status: 'invited'`; push to invitee |
-| `publishMyDay()` | upsert today's `users/{uid}/days` doc (throttle to ~every 15 min) |
+| Function | Trigger | Responsibility |
+|---|---|---|
+| `addFriend` | callable | Resolves a friend code and creates the **mutual** link in one transaction. Clients can't write `friendIds` at all. |
+| `onDayWritten` | day doc write | Lifetime steps, streak recompute, "closed all rings" feed events, and **competition points** — scoring uses `scoring.js`, a direct port of `src/lib/rings.ts`, so the server and the UI always agree. Clients never write points; it's the scoreboard. |
+| `onFeedCreated` | feed doc create | FCM push to the event's audience. |
+| `finishCompetitions` | nightly schedule | Flips expired competitions to `finished` and posts the winner announcement. |
 
-## Two things the server must own
+`firestore.rules` enforces the same boundaries: profile days are readable
+only by accepted friends, feed events only by their audience, clients can
+author only `cheer` events as themselves, and competition `points`/`status`
+transitions are locked down. Note `hourlySteps` reveals daily movement
+patterns even to friends — if that's too exposed for your audience, strip
+it to aggregates server-side and make the raw field owner-only.
 
-1. **Competition scoring.** Clients report raw daily activity; a scheduled
-   Cloud Function computes `competitionPointsForDay()` from the reported
-   days and writes `points`. Never trust client-computed points — it's the
-   scoreboard. The scoring function in `src/lib/rings.ts` is dependency-free
-   TypeScript precisely so it can run unchanged in a Cloud Function.
-2. **Privacy.** Security rules: a user's `days` are readable only by
-   accepted friends; `hourlySteps` reveals daily movement patterns, so
-   consider exposing only aggregates to friends and keeping hourly data
-   private. Cheer/feed writes must be validated against the friendship
-   graph.
+## Costs and scaling notes
 
-## Swap procedure
-
-1. `npm install firebase` (or use the REST API from a thin client).
-2. Implement `FirebaseSocialService implements SocialService`.
-3. In `src/store/useAppStore.ts`, replace the one `new DemoSocialService()`
-   line (behind a config flag if you want demo mode to remain available).
-4. Add sign-in (Apple / Google via `expo-auth-session`) to establish `uid`.
-
-No UI changes are required — screens only know about the interface.
+- `getFriends()` reads 7 day-docs per friend per refresh; fine for
+  Apple-Fitness-sized friend lists (dozens). For bigger graphs, denormalize
+  a `weekSummary` array onto the user doc from `onDayWritten`.
+- `publishMyDay` is throttled client-side to one write per 5 minutes.
+- Both list queries need the composite indexes in
+  `firestore.indexes.json` (deployed in step 3).

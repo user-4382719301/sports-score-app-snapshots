@@ -45,10 +45,13 @@ npx expo run:ios        # or: npx expo run:android
   Health Connect (Android 14+ has it built in; earlier versions install it
   from Play).
 
-Social features run against an on-device demo backend
-(`src/social/demoSocialService.ts`). The service interface is one file —
-see [`docs/BACKEND.md`](docs/BACKEND.md) for the Firestore schema and swap
-plan to make it multi-user for real.
+Social features default to an on-device demo backend so everything works
+with zero setup. A real multi-user backend (Firebase Auth + Firestore +
+Cloud Functions with server-verified competition scoring, plus security
+rules) is included: flip `SOCIAL_BACKEND` in `src/config.ts` and deploy
+[`firebase/`](firebase/) — see [`docs/BACKEND.md`](docs/BACKEND.md).
+Friending works by trading the 6-character friend code shown on the
+Sharing tab.
 
 ## Tests
 
@@ -69,6 +72,7 @@ src/
 ├── components/         # ActivityRings, WeekBars, StatCard, Avatar
 ├── screens/            # Summary, Sharing, FriendDetail, Compete, Awards, Settings
 └── navigation/
+firebase/               # deployable backend: rules, indexes, Cloud Functions
 watch/                  # native watchOS + Wear OS companion reference apps
 docs/                   # architecture + backend plan
 ```

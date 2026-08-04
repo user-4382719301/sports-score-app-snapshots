@@ -11,10 +11,11 @@
         HealthAdapter                    SocialService
         (src/health)                     (src/social)
                 │                               │
-   ┌────────────┼────────────┐          DemoSocialService (on-device)
-   │            │            │          └─ swap for a server impl,
-HealthKit  Health Connect  Demo            see docs/BACKEND.md
- (iOS)      (Android)     (fallback)
+   ┌────────────┼────────────┐         ┌────────┴────────┐
+   │            │            │      Demo (default)   Firebase
+HealthKit  Health Connect  Demo     (on-device)      (Auth+Firestore+
+ (iOS)      (Android)     (fallback)                  Functions, see
+                                                      docs/BACKEND.md)
    ▲            ▲
    │            │
 Apple Watch   Wear OS / Galaxy Watch / Fitbit
@@ -60,10 +61,11 @@ UI can render both totals and day-by-day breakdowns.
 ## What's deliberately not here yet
 
 - Persistence of goals/units (add `zustand/middleware` persist +
-  AsyncStorage).
-- Push notifications for cheers/feed (Expo Notifications; the demo backend
-  fabricates the feed locally).
+  AsyncStorage — already a dependency for Firebase auth persistence).
+- Registering FCM tokens from the client (the `onFeedCreated` push function
+  is deployed but `users/{uid}.fcmTokens` is never populated yet).
 - Background step observers (HealthKit background delivery is enabled in
   the entitlements; wiring `initStepCountObserver` → store refresh is a
   small follow-up).
-- Server-side competition verification (see BACKEND.md).
+- Linking Apple/Google credentials onto the anonymous Firebase account so
+  identities survive device swaps.

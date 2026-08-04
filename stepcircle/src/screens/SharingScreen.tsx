@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Pressable } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Pressable, TextInput, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Avatar } from '../components/Avatar';
 import { ActivityRings } from '../components/ActivityRings';
@@ -16,6 +16,51 @@ const FEED_ICONS: Record<string, string> = {
   cheer: '🎉',
 };
 
+function AddFriendCard() {
+  const { me, addFriend } = useAppStore();
+  const [code, setCode] = React.useState('');
+  const [busy, setBusy] = React.useState(false);
+
+  const onAdd = async () => {
+    if (!code.trim() || busy) return;
+    setBusy(true);
+    try {
+      const added = await addFriend(code);
+      Alert.alert(
+        added ? 'Friend added' : 'Code not found',
+        added ? 'Their rings now show in your Sharing tab.' : 'Double-check the code and try again.'
+      );
+      if (added) setCode('');
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <View style={[styles.card, styles.addCard]}>
+      <Text style={t.body}>
+        Your friend code: <Text style={styles.code}>{me?.friendCode ?? '——'}</Text>
+      </Text>
+      <View style={styles.addRow}>
+        <TextInput
+          style={styles.input}
+          value={code}
+          onChangeText={setCode}
+          placeholder="Enter a friend's code"
+          placeholderTextColor={colors.textSecondary}
+          autoCapitalize="characters"
+          autoCorrect={false}
+          maxLength={12}
+          onSubmitEditing={onAdd}
+        />
+        <Pressable style={[styles.addButton, busy && { opacity: 0.5 }]} onPress={onAdd}>
+          <Text style={t.headline}>Add</Text>
+        </Pressable>
+      </View>
+    </View>
+  );
+}
+
 export function SharingScreen() {
   const navigation = useNavigation<any>();
   const { friends, feed } = useAppStore();
@@ -23,6 +68,8 @@ export function SharingScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Text style={[t.largeTitle, styles.title]}>Sharing</Text>
+
+      <AddFriendCard />
 
       <Text style={t.headline}>Friends</Text>
       <View style={styles.card}>
@@ -84,4 +131,21 @@ const styles = StyleSheet.create({
   feedIcon: { fontSize: 24 },
   friendInfo: { flex: 1, gap: 2 },
   rowBorder: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.separator },
+  addCard: { padding: spacing.md, gap: spacing.sm, marginBottom: spacing.sm },
+  code: { fontWeight: '700', letterSpacing: 1, color: colors.gold },
+  addRow: { flexDirection: 'row', gap: spacing.sm },
+  input: {
+    flex: 1,
+    backgroundColor: colors.cardElevated,
+    borderRadius: 10,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    color: colors.text,
+  },
+  addButton: {
+    backgroundColor: colors.tint,
+    borderRadius: 10,
+    paddingHorizontal: spacing.md,
+    justifyContent: 'center',
+  },
 });
