@@ -27,10 +27,15 @@ Everything social goes through one interface —
 
 Users start as anonymous accounts with a generated name and a 6-character
 **friend code** (shown on the Sharing tab). Trading codes is the whole
-friending flow — same spirit as Apple Fitness sharing invites. To make
-accounts portable across devices, link Apple/Google credentials onto the
-anonymous user with `expo-auth-session` + `linkWithCredential` (not wired
-up yet).
+friending flow — same spirit as Apple Fitness sharing invites.
+
+**Account portability:** Settings → Account offers "Link Apple ID"
+(`src/auth/linkApple.ts`), which links a Sign in with Apple credential
+onto the anonymous user via the hashed-nonce flow — enable the Apple
+provider in Firebase Auth first. Google linking follows the same
+`linkWithCredential` pattern but needs OAuth client IDs and
+`expo-auth-session`'s hook-based flow; add it in the same file when you
+have the client IDs.
 
 ## Firestore schema
 

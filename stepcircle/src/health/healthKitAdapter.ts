@@ -1,3 +1,4 @@
+import { NativeEventEmitter, NativeModules } from 'react-native';
 import AppleHealthKit, {
   type HealthKitPermissions,
   type HealthValue,
@@ -87,6 +88,24 @@ export class HealthKitAdapter implements HealthAdapter {
       result.push(await this.getDay(key));
     }
     return result;
+  }
+
+  /**
+   * Fire on new step samples landing in HealthKit — e.g. an Apple Watch
+   * syncing. Events come from react-native-health's background observers,
+   * which need a one-line native setup after `expo prebuild`: add
+   * `[[RCTAppleHealthKit new] initializeBackgroundObservers:bridge];` to
+   * the AppDelegate (see the library's docs/background.md). Without it this
+   * listener simply never fires and the periodic refresh covers freshness.
+   */
+  observeChanges(onChange: () => void): () => void {
+    try {
+      const emitter = new NativeEventEmitter(NativeModules.AppleHealthKit);
+      const subscription = emitter.addListener('healthKit:StepCount:new', onChange);
+      return () => subscription.remove();
+    } catch {
+      return () => {};
+    }
   }
 
   /** Steps bucketed into 24 clock hours via 60-minute sample periods. */

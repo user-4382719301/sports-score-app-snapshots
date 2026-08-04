@@ -17,6 +17,12 @@ export interface HealthAdapter {
   getDay(date: DayKey): Promise<DailyActivity>;
   /** The last `days` days ending today, oldest first. */
   getHistory(days: number): Promise<DailyActivity[]>;
+  /**
+   * Start listening for new samples arriving in the health store (e.g. a
+   * watch syncing). Returns an unsubscribe function. Optional — platforms
+   * without change notifications rely on the app's periodic refresh.
+   */
+  observeChanges?(onChange: () => void): () => void;
 }
 
 export function emptyDay(date: DayKey, source: ActivitySource): DailyActivity {

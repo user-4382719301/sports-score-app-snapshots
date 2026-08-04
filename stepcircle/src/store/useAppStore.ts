@@ -142,6 +142,18 @@ export const useAppStore = create<AppState>()(
     await get().refresh();
     set({ ready: true });
     void registerPushTokenIfAvailable();
+
+    // Live updates: refresh when new samples land in the health store
+    // (e.g. a watch syncing), at most once a minute.
+    if (health.observeChanges) {
+      let lastRefreshAt = 0;
+      health.observeChanges(() => {
+        const now = Date.now();
+        if (now - lastRefreshAt < 60_000) return;
+        lastRefreshAt = now;
+        void get().refresh();
+      });
+    }
   },
 
   refresh: async () => {

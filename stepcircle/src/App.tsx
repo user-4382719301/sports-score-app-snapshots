@@ -36,6 +36,16 @@ export default function App() {
     return () => subscription.remove();
   }, []);
 
+  // Periodic refresh while the app is open — covers platforms without health
+  // store change notifications (Health Connect) and keeps friend data live.
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const { ready: isReady, refresh } = useAppStore.getState();
+      if (AppState.currentState === 'active' && isReady) void refresh();
+    }, 5 * 60_000);
+    return () => clearInterval(interval);
+  }, []);
+
   if (!ready) {
     return (
       <View style={styles.splash}>

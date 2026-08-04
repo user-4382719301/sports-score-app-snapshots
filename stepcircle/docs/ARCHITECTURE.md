@@ -58,14 +58,25 @@ chart). `Goals` maps onto the three rings. `Friend` = profile + today +
 trailing week. `Competition` stores per-participant `dailyPoints` so the
 UI can render both totals and day-by-day breakdowns.
 
+## Data freshness
+
+Rings refresh on launch, on returning to the foreground, on
+pull-to-refresh, every 5 minutes while open, and — on iOS — whenever
+HealthKit reports new step samples (`observeChanges` in the HealthKit
+adapter, throttled to once a minute), so a watch syncing mid-session shows
+up without user action. The HealthKit events require react-native-health's
+background observers, a one-line AppDelegate addition after `expo prebuild`
+(documented in the adapter); without it the periodic refresh still covers
+freshness. Health Connect has no change listener in JS, so Android relies
+on the interval + lifecycle refreshes.
+
 ## What's deliberately not here yet
 
-- Background step observers (HealthKit background delivery is enabled in
-  the entitlements; wiring `initStepCountObserver` → store refresh is a
-  small follow-up — the app currently refreshes on launch, foreground, and
-  pull-to-refresh).
-- Linking Apple/Google credentials onto the anonymous Firebase account so
-  identities survive device swaps.
+- Google account linking (Apple linking is wired up in Settings; Google
+  needs OAuth client IDs and the `expo-auth-session` hook flow — see
+  docs/BACKEND.md).
+- iOS background delivery beyond brief observer wakeups (true background
+  processing would add a `BGProcessingTask`).
 
 Goals/units persist across launches (zustand `persist` + AsyncStorage),
 and in Firebase mode the app registers an Expo push token on launch so

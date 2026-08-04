@@ -1,8 +1,60 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Pressable, Switch } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Pressable, Switch, Alert, Platform } from 'react-native';
 import { useAppStore } from '../store/useAppStore';
 import { formatInt } from '../lib/format';
 import { colors, spacing, type as t } from '../theme';
+import { SOCIAL_BACKEND } from '../config';
+import { linkAppleAccount, type AppleLinkResult } from '../auth/linkApple';
+
+const LINK_MESSAGES: Record<AppleLinkResult, string> = {
+  linked: 'Your Apple ID is now linked — your account survives device swaps.',
+  'already-linked': 'This account is already linked to an Apple ID.',
+  unavailable: 'Sign in with Apple is not available on this device.',
+  cancelled: 'Linking was cancelled.',
+  failed: 'Something went wrong — please try again.',
+};
+
+function AccountSection() {
+  const me = useAppStore((s) => s.me);
+  const [busy, setBusy] = React.useState(false);
+  if (SOCIAL_BACKEND !== 'firebase') return null;
+
+  const onLink = async () => {
+    if (busy) return;
+    setBusy(true);
+    try {
+      const result = await linkAppleAccount();
+      Alert.alert('Link Apple ID', LINK_MESSAGES[result]);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <>
+      <Text style={[t.headline, { marginTop: spacing.md }]}>Account</Text>
+      <View style={styles.card}>
+        <View style={styles.row}>
+          <Text style={[t.body, { flex: 1 }]}>
+            {me ? `${me.displayName} · code ${me.friendCode}` : 'Signed in anonymously'}
+          </Text>
+        </View>
+        {Platform.OS === 'ios' && (
+          <View style={styles.row}>
+            <Pressable style={[styles.linkButton, busy && { opacity: 0.5 }]} onPress={onLink}>
+              <Text style={t.headline}> Link Apple ID</Text>
+            </Pressable>
+          </View>
+        )}
+        <View style={styles.row}>
+          <Text style={[t.caption, { flex: 1 }]}>
+            Linking keeps your friends, streaks and competitions if you switch phones.
+          </Text>
+        </View>
+      </View>
+    </>
+  );
+}
 
 function GoalStepper({
   label,
@@ -91,6 +143,8 @@ export function SettingsScreen() {
         </View>
       </View>
 
+      <AccountSection />
+
       <Text style={[t.headline, { marginTop: spacing.md }]}>Data source</Text>
       <View style={styles.card}>
         <View style={styles.row}>
@@ -127,4 +181,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   stepperText: { color: colors.text, fontSize: 20, fontWeight: '600' },
+  linkButton: {
+    flex: 1,
+    backgroundColor: colors.cardElevated,
+    borderRadius: 10,
+    padding: spacing.sm,
+    alignItems: 'center',
+  },
 });
