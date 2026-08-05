@@ -4,6 +4,7 @@
     "slug": "stepcircle",
     "version": "0.1.0",
     "orientation": "portrait",
+    "newArchEnabled": false,
     "userInterfaceStyle": "dark",
     "backgroundColor": "#000000",
     "splash": {
