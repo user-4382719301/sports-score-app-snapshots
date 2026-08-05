@@ -6,6 +6,17 @@
     "orientation": "portrait",
     "newArchEnabled": false,
     "userInterfaceStyle": "dark",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/d930938d-7f9b-4e69-8e39-946e203a0434"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d930938d-7f9b-4e69-8e39-946e203a0434"
+      }
+    },
     "backgroundColor": "#000000",
     "splash": {
       "backgroundColor": "#000000"
