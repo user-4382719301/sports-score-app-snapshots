@@ -16,7 +16,8 @@
       "usesAppleSignIn": true,
       "infoPlist": {
         "NSHealthShareUsageDescription": "StepCircle reads your steps, distance, exercise minutes and flights climbed from Health to show your rings and share progress with friends you choose.",
-        "NSHealthUpdateUsageDescription": "StepCircle can save workouts you record back to Health."
+        "NSHealthUpdateUsageDescription": "StepCircle can save workouts you record back to Health.",
+        "ITSAppUsesNonExemptEncryption": false
       },
       "entitlements": {
         "com.apple.developer.healthkit": true,
