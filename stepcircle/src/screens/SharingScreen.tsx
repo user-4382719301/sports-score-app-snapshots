@@ -31,6 +31,8 @@ function AddFriendCard() {
         added ? 'Their rings now show in your Sharing tab.' : 'Double-check the code and try again.'
       );
       if (added) setCode('');
+    } catch {
+      Alert.alert('Could not add friend', 'Check your connection and try again.');
     } finally {
       setBusy(false);
     }

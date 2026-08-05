@@ -11,19 +11,26 @@ Everything social goes through one interface —
 
 ## Turning on the real backend
 
-1. Create a Firebase project; enable **Anonymous** sign-in (Authentication
-   → Sign-in method) and **Firestore**.
-2. Copy the web-app config into `FIREBASE_CONFIG` in `src/config.ts` and
-   set `SOCIAL_BACKEND = 'firebase'`.
+1. In the [Firebase console](https://console.firebase.google.com): create a
+   project, add a **Web app** to it, enable **Anonymous** sign-in
+   (Authentication → Sign-in method), create a **Firestore** database, and
+   upgrade to the **Blaze** plan (required to deploy Cloud Functions;
+   effectively free at small scale).
+2. Run the setup script and paste the `firebaseConfig` block the console
+   showed you:
+   ```sh
+   node scripts/setup-firebase.mjs
+   ```
+   It writes `src/config.ts` (with `SOCIAL_BACKEND = 'firebase'`) and
+   `firebase/.firebaserc` for you.
 3. Deploy rules, indexes and functions:
    ```sh
-   cd firebase
-   npm --prefix functions install
-   firebase deploy --only firestore,functions
+   npm install -g firebase-tools
+   firebase login
+   npm --prefix firebase/functions install
+   cd firebase && firebase deploy --only firestore,functions
    ```
-4. `npm install` in the app (pulls `firebase` +
-   `@react-native-async-storage/async-storage`, which persists the
-   anonymous user across launches) and rebuild.
+4. Rebuild the app on each phone (the config is baked into the build).
 
 Users start as anonymous accounts with a generated name and a 6-character
 **friend code** (shown on the Sharing tab). Trading codes is the whole

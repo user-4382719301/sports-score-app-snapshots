@@ -158,12 +158,19 @@ export const useAppStore = create<AppState>()(
 
   refresh: async () => {
     const { goals, myId } = get();
-    const [history, friends, feed, competitions] = await Promise.all([
-      health.getHistory(HISTORY_DAYS),
-      social.getFriends(),
-      social.getFeed(),
-      social.getCompetitions(),
-    ]);
+    const history = await health.getHistory(HISTORY_DAYS);
+    // Social data is best-effort: offline or a misconfigured backend keeps
+    // whatever we last showed instead of failing the whole refresh.
+    let { friends, feed, competitions } = get();
+    try {
+      [friends, feed, competitions] = await Promise.all([
+        social.getFriends(),
+        social.getFeed(),
+        social.getCompetitions(),
+      ]);
+    } catch (e) {
+      console.warn('[social] refresh failed (offline?)', e);
+    }
     const today = history[history.length - 1] ?? null;
     const lifetimeSteps = history.reduce((sum, d) => sum + d.steps, 0);
     const awards = computeEarnedAwards(
@@ -187,7 +194,11 @@ export const useAppStore = create<AppState>()(
       awards,
     });
     if (today) {
-      await social.publishMyDay(today);
+      try {
+        await social.publishMyDay(today);
+      } catch (e) {
+        console.warn('[social] could not publish today', e);
+      }
     }
   },
 

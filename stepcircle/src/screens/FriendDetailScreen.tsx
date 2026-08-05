@@ -22,17 +22,25 @@ export function FriendDetailScreen() {
   const rings = computeRings(friend.today, friend.goals);
 
   const onCheer = async () => {
-    const message = `You cheered ${friend.displayName} on: "${CHEERS[Math.floor(Math.random() * CHEERS.length)]}"`;
-    await sendCheer(friend.id, message);
-    Alert.alert('Sent!', `${friend.displayName} will get your cheer.`);
+    try {
+      const message = `You cheered ${friend.displayName} on: "${CHEERS[Math.floor(Math.random() * CHEERS.length)]}"`;
+      await sendCheer(friend.id, message);
+      Alert.alert('Sent!', `${friend.displayName} will get your cheer.`);
+    } catch {
+      Alert.alert('Could not send cheer', 'Check your connection and try again.');
+    }
   };
 
   const onChallenge = async () => {
-    await inviteToCompetition(friend.id);
-    Alert.alert(
-      'Challenge sent',
-      `A 7-day competition with ${friend.displayName} starts tomorrow if they accept.`
-    );
+    try {
+      await inviteToCompetition(friend.id);
+      Alert.alert(
+        'Challenge sent',
+        `A 7-day competition with ${friend.displayName} starts tomorrow if they accept.`
+      );
+    } catch {
+      Alert.alert('Could not send challenge', 'Check your connection and try again.');
+    }
   };
 
   return (
