@@ -1,57 +1,120 @@
-# sports-score-app-snapshots
+# Relay
 
-Daily snapshots of ESPN's qualified-leaderboard ranks for every stat the
-companion app at `sports-score-app` cares about. Used to render rank-change
-deltas (▲13 / ▼2) in the app without needing a backend.
+A daily sports game wrapped in a live-scores app. Each day you pick five
+athletes from tonight's slate, give them an order, and chain their real
+objectives together: when runner 1 completes their objective ("record a
+hit"), the baton passes to runner 2, and suddenly a random Tuesday-night
+game matters because *your* runner needs six assists. Every athlete is a
+season-long collectible card that levels up, evolves, and carries its
+history with it — closer to raising a Pokémon than opening fantasy packs.
 
-A GitHub Actions cron runs `scripts/snapshot.mjs` at 09:00 UTC, fetches
-ESPN, and commits the result back to this repo. The app reads:
+**V1 is a fully local prototype** — realistic mock data, a simulated live
+feed, and local persistence. No backend, no accounts, no real-money
+anything.
 
-```
-https://raw.githubusercontent.com/<user>/sports-score-app-snapshots/main/leaderboards/<league>/latest.json
-```
-
-## File layout
-
-```
-leaderboards/
-├── nba/
-│   ├── latest.json           # overwritten daily
-│   └── 2026-04-24.json       # per-day archive (ymd UTC)
-└── mlb/
-    ├── latest.json
-    └── 2026-04-24.json
-```
-
-## Snapshot shape
-
-```json
-{
-  "snapshotDate": "2026-04-24T09:00:00.123Z",
-  "league": "MLB",
-  "season": 2026,
-  "stats": {
-    "batting.avg": [
-      { "playerId": "33192", "rank": 1, "value": "0.347" },
-      { "playerId": "...", "rank": 2, "value": "0.341" }
-    ],
-    "batting.homeRuns": [...]
-  }
-}
-```
-
-## Running locally
+## Running the app
 
 ```sh
-node scripts/snapshot.mjs
+npm install
+npx expo start
 ```
 
-Writes to `leaderboards/<league>/{latest,YYYY-MM-DD}.json`.
+Then press `i` for the iOS simulator (primary target), `a` for Android, or
+scan the QR code with Expo Go. Built on Expo SDK 57 / React Native 0.86 /
+TypeScript strict.
 
-## Keeping the catalog in sync
+Other commands:
 
-The `SORT_KEYS` and `ASC_KEYS` constants in `scripts/snapshot.mjs` mirror
-the rank catalog in the companion app
-(`src/api/rankCatalog.ts`). If the app adds or renames a sort key, update
-this script to match — the snapshot entry for an unrequested key will be
-empty and the app will silently fall back to "no delta".
+```sh
+npm test           # domain logic tests (relay engine, validation, progression, rewards)
+npm run typecheck  # tsc --noEmit
+npm run lint       # expo lint
+```
+
+## Driving the demo
+
+The prototype ships with a world already in motion: one live relay (leg 1
+banked, leg 2 live), 12 games across MLB / WNBA / NBA / NHL / soccer, 24
+season cards, history, quests, and notifications.
+
+On the **Relay** tab, open **Demo controls** (the flask row). It stands in
+for the live data feed:
+
+- **Advance stat** — nudge the active runner's objective stat (box scores,
+  scoreboard, and plays update to match)
+- **Complete leg** — finish the objective; the baton passes with a
+  celebration
+- **Fail leg** — break the chain (a Shield card in the lineup revives the
+  first failure)
+- **Finish relay** — run the rest of the chain to completion
+- **Reset demo** — wipe persisted state and rebuild today's world
+
+Everything the simulation touches ripples through Home, Games, Collection,
+Notifications, and Rewards, and persists across restarts via AsyncStorage.
+State is day-aware: reopening the app on a later calendar day archives the
+stale relay, reseeds the slate, and resets daily quests.
+
+## What's in V1
+
+- **Home** — active relay at a glance, who's running now and next, games
+  that matter, quest summary, notification indicator, Relay Rating
+- **Build Relay** — browse/search/filter eligible cards, drag to reorder
+  (with accessibility reorder actions), validation (no started games, no
+  duplicates, max five), risk tier, reward multiplier, chemistry bonuses
+- **Live Relay** — broadcast-style score bug, active objective progress,
+  live stat chips, the five-leg chain, recent plays, baton-pass animation,
+  demo controls
+- **Games** — date/sport filters, search, live/upcoming/final sections,
+  relay-player highlighting, favorites
+- **Game Detail** — sport-aware box scores (MLB/basketball/NHL/soccer stat
+  columns), team stats, play-by-play, your relay athlete highlighted with
+  objective progress and a link to their card
+- **Collection** — 24 season cards, search/sport/favorites/evolved filters,
+  sort by level/usage/success
+- **Card Detail** — collectible presentation with Overview / Stats /
+  Progression / History / Abilities tabs, XP and level, evolution stages
+  (Rookie → Pro → Elite → Legend), path abilities, milestones, evolution
+  choice
+- **Relay History** — past relays with per-leg results, perfect-relay and
+  shield-save indicators, rewards; open any entry to inspect each leg
+- **Profile** — rating, account level/XP, streaks, most-used players,
+  recently evolved cards, achievements
+- **Notifications** — generated by the simulation (legs, baton passes,
+  level-ups, evolution unlocks)
+- **Rewards** — daily and season quests with claimable payouts, soft
+  currency, season track with cosmetic placeholders
+
+## Relay rules (V1)
+
+Five legs, one objective each, strictly sequential — only the active runner
+can advance the chain. A failed leg ends the relay unless a **Shield** card
+revives it (once per relay). Paths bend the rules in small, legible ways:
+
+| Path | Rule |
+| --- | --- |
+| Spark | +10% reward bonus in slots 1–2 |
+| Connector | Completing its leg eases the next objective by 1 |
+| Power | Draws a harder objective, +25% reward |
+| Shield | Revives the first failed leg |
+| Closer | +10% reward bonus in slots 4–5 |
+| Wildcard | Draws a volatile objective, +40% reward |
+
+Payout = base coins per completed leg (by difficulty) × multiplier
+(1 + path bonuses + chemistry), ×1.5 for finishing all five, ×1.25 for a
+perfect run. All formulas live in `src/domain/rewards.ts` and are covered
+by tests — no balancing engine, on purpose.
+
+## Documentation
+
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — product architecture,
+  how to replace mock data with a real sports API, and deliberate V1
+  limitations
+- [`docs/SNAPSHOTS.md`](docs/SNAPSHOTS.md) — the pre-existing leaderboard
+  snapshot pipeline this repository also hosts (unrelated to the app's
+  runtime; the app never reads it)
+
+## License note
+
+All teams, players, and leagues in the mock data are fictional. No
+licensed logos, marks, or likenesses are used; art is generated locally
+from initials, team colors, and neutral icons.
